@@ -1,0 +1,15 @@
+[Unit]
+Description=STLFRC scanner-to-GroupMe alerts
+After=network-online.target trunk-recorder.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=stlfrc
+EnvironmentFile=/etc/stlfrc/env
+ExecStart=/opt/stlfrc/.venv/bin/stlfrc -c /etc/stlfrc/config.toml watch
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

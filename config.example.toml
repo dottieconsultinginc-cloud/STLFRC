@@ -1,0 +1,58 @@
+# STLFRC configuration. Copy to /etc/stlfrc/config.toml and edit.
+# Regex patterns use TOML single-quoted strings so backslashes stay literal.
+
+[groupme]
+# Better: leave this blank and set STLFRC_GROUPME_BOT_ID in /etc/stlfrc/env
+bot_id = ""
+
+[trunk_recorder]
+# Must match "captureDir" in trunk-recorder's config.json
+capture_dir = "/var/lib/trunk-recorder/audio"
+state_file = "/var/lib/stlfrc/processed.txt"
+# Ignore key-ups and very short transmissions
+min_call_seconds = 1.5
+
+[whisper]
+# tiny.en / base.en / small.en / medium.en. small.en is a good balance on a
+# mini PC; use medium.en if you have a GPU or a fast CPU.
+model = "small.en"
+device = "auto"
+# Local vocabulary helps Whisper spell things right. Add street names,
+# district names and unit names you hear often.
+prompt = "St. Louis County fire dispatch. Canteen, rehab, working fire, second alarm, battalion chief, engine, ladder, squad, medic, command."
+
+[alerts]
+# Don't repeat the same alert on the same talkgroup within this window
+cooldown_seconds = 120
+# Optional: if the audio folder is served over the web, alerts include a link
+audio_base_url = ""
+
+# Talkgroups to transcribe (decimal ID = display name). Get IDs from
+# RadioReference for the St. Louis County system. Leave the table empty to
+# transcribe everything trunk-recorder records.
+[talkgroups]
+# 1234 = "County Fire Dispatch"
+# 1235 = "Fire Ops 1"
+
+# Alert rules. A call alerts if ANY pattern in a rule matches. Optionally
+# limit a rule to certain talkgroups with `talkgroups = [1234, 1235]`.
+[[rules]]
+name = "canteen request"
+# Includes common Whisper mishearings of "canteen"
+patterns = ['\bcan\s?teens?\b', '\bcantines?\b', '\bcanteen\s*\d+']
+
+[[rules]]
+name = "rehab request"
+patterns = ['\brehab\b', '\brehabilitation\b']
+
+[[rules]]
+name = "multiple alarm"
+patterns = [
+  '\b(second|third|fourth|fifth|2nd|3rd|4th|5th)[\s-]+alarm\b',
+  '\bgeneral alarm\b',
+  '\bbox alarm\b',
+]
+
+[[rules]]
+name = "working fire"
+patterns = ['\bworking (structure |house |building |commercial )?fire\b', '\bfire showing\b']

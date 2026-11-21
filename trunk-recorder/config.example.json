@@ -1,0 +1,30 @@
+{
+  "_comment": "Starter trunk-recorder config. Fill in the control channels for the nearest St. Louis County P25 site from RadioReference, and set the SDR center frequency so all of those control and voice frequencies fall within the SDR's bandwidth.",
+  "ver": 2,
+  "sources": [
+    {
+      "center": 0,
+      "rate": 2400000,
+      "gain": 40,
+      "error": 0,
+      "digitalRecorders": 4,
+      "driver": "osmosdr",
+      "device": "rtl=0"
+    }
+  ],
+  "systems": [
+    {
+      "shortName": "stlco",
+      "type": "p25",
+      "control_channels": [],
+      "modulation": "qpsk",
+      "talkgroupsFile": "/etc/trunk-recorder/talkgroups.csv",
+      "recordUnknown": false,
+      "compressWav": true,
+      "minDuration": 1.0
+    }
+  ],
+  "captureDir": "/var/lib/trunk-recorder/audio",
+  "callTimeout": 3,
+  "logLevel": "info"
+}
