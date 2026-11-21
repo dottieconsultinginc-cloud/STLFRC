@@ -32,7 +32,7 @@ Example alert:
 
 | Item | Notes |
 |---|---|
-| SDR | RTL-SDR Blog V4 (~$40) works. An Airspy Mini/R2 (~$130–$200) covers more of the band and handles strong signals better. A P25 site usually needs one SDR if its frequencies fit within ~2 MHz, otherwise two. |
+| SDR | The SLATER simulcast site spans ~2.9 MHz, more than one RTL-SDR covers. Either **two RTL-SDR Blog V4s** (~$40 each) or **one Airspy Mini/R2** (~$130–$200, handles strong signals better). See [`trunk-recorder/README.md`](trunk-recorder/README.md). |
 | Antenna | A tuned 700/800 MHz antenna mounted high (attic or roof) beats the stock whip by a lot. |
 | Computer | Mini PC (Intel N100 or better, 8–16 GB RAM, ~$150–$250) is recommended. A Raspberry Pi 5 can run trunk-recorder, but Whisper is slow on it, so use the `base.en` model. |
 | Power | A small UPS so alerts survive power blips. |
@@ -42,12 +42,10 @@ Example alert:
 ### 1. Radio: trunk-recorder
 
 1. Install [trunk-recorder](https://github.com/robotastic/trunk-recorder) (Docker image or packages).
-2. On [RadioReference](https://www.radioreference.com), open the St. Louis County
-   P25 system. Pick the site closest to you and note its **control channels**
-   and the **talkgroup IDs** for fire dispatch and fireground ops.
-3. Copy `trunk-recorder/config.example.json` to `/etc/trunk-recorder/config.json`,
-   fill in `control_channels` and `center`, and list your talkgroups in `talkgroups.csv`.
-4. Start it and confirm audio files appear under `/var/lib/trunk-recorder/audio`.
+2. Follow [`trunk-recorder/README.md`](trunk-recorder/README.md): it has
+   ready-made configs for the St. Louis County SLATER system (two RTL-SDRs or
+   one Airspy), the site choice, and the fire talkgroup list.
+3. Start it and confirm audio files appear under `/var/lib/trunk-recorder/audio/slater/`.
 
 ### 2. GroupMe bot
 
@@ -69,7 +67,7 @@ echo 'STLFRC_GROUPME_BOT_ID=paste-bot-id-here' | sudo tee /etc/stlfrc/env
 sudo chmod 600 /etc/stlfrc/env
 ```
 
-Edit `/etc/stlfrc/config.toml`: add your talkgroups and adjust the rules.
+Edit `/etc/stlfrc/config.toml`: comment out talkgroups you don't need and adjust the rules.
 
 Send a test message:
 

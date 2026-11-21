@@ -1,0 +1,12 @@
+Decimal,Hex,Alpha Tag,Mode,Description,Tag,Category,Priority
+54755,d5e3,South Fire Disp,D,South Fire dispatch,Fire Dispatch,St. Louis County Fire,1
+54756,d5e4,South Fire Main,D,South Fire main,Fire-Talk,St. Louis County Fire,2
+54753,d5e1,North Fire Disp,D,North Fire dispatch,Fire Dispatch,St. Louis County Fire,1
+54754,d5e2,North Fire Main,D,North Fire main,Fire-Talk,St. Louis County Fire,2
+54757,d5e5,SLC Muni Fire 1,D,SLC Muni Fire 1,Fire Dispatch,St. Louis County Fire,2
+54758,d5e6,SLC Muni Fire 2,D,SLC Muni Fire 2,Fire-Talk,St. Louis County Fire,3
+54701,d5ad,ECDC Fire Disp,D,East Central Dispatch (Richmond Heights) fire dispatch,Fire Dispatch,East Central Dispatch,1
+54702,d5ae,ECDC Fire Main,D,East Central Dispatch fire main,Fire-Talk,East Central Dispatch,2
+54751,d5df,Kirkwd Fire Main,D,Kirkwood Fire dispatch,Fire Dispatch,Kirkwood,1
+54749,d5dd,Kirkwood Fire,D,Kirkwood Fire main,Fire-Talk,Kirkwood,2
+54759,d5e7,Univ City Fire,D,University City Fire,Fire Dispatch,University City,2

@@ -98,6 +98,7 @@ def test_processor_skips_other_talkgroups_and_short_calls(cfg):
 
 def test_watcher_processes_new_calls_once_and_skips_backlog(cfg):
     sent = []
+    cfg.talkgroups = {}  # transcribe everything
     old = write_call(cfg.capture_dir, "old")
     past = time.time() - 3600
     os.utime(old, (past, past))

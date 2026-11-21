@@ -1,0 +1,30 @@
+{
+  "ver": 2,
+  "sources": [
+    {
+      "center": 852500000,
+      "rate": 6000000,
+      "gain": 15,
+      "error": 0,
+      "digitalRecorders": 8,
+      "driver": "osmosdr",
+      "device": "airspy=0"
+    }
+  ],
+  "systems": [
+    {
+      "shortName": "slater",
+      "type": "p25",
+      "control_channels": [853462500, 853687500, 853787500, 853937500],
+      "modulation": "qpsk",
+      "talkgroupsFile": "/etc/trunk-recorder/talkgroups.csv",
+      "recordUnknown": false,
+      "hideEncrypted": true,
+      "compressWav": true,
+      "minDuration": 1.0
+    }
+  ],
+  "captureDir": "/var/lib/trunk-recorder/audio",
+  "callTimeout": 3,
+  "logLevel": "info"
+}

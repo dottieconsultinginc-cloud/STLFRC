@@ -27,12 +27,26 @@ cooldown_seconds = 120
 # Optional: if the audio folder is served over the web, alerts include a link
 audio_base_url = ""
 
-# Talkgroups to transcribe (decimal ID = display name). Get IDs from
-# RadioReference for the St. Louis County system. Leave the table empty to
-# transcribe everything trunk-recorder records.
+# Talkgroups to transcribe (decimal ID = display name), from the SLATER
+# system on RadioReference (sid 1085). These are CANDIDATES: comment out any
+# line you don't care about by putting # in front of it. Leave the table empty
+# to transcribe everything trunk-recorder records.
+# trunk-recorder only records what is in trunk-recorder/talkgroups.csv, so a
+# talkgroup must be in that file too.
+# Not included: FireNet 54101 (encrypted, can't be decoded) and City of
+# St. Louis fire (on MOSWIN, a different system).
 [talkgroups]
-# 1234 = "County Fire Dispatch"
-# 1235 = "Fire Ops 1"
+54755 = "South Fire Dispatch"
+54756 = "South Fire Main"
+54753 = "North Fire Dispatch"
+54754 = "North Fire Main"
+54757 = "SLC Muni Fire 1"
+54758 = "SLC Muni Fire 2"
+54701 = "ECDC Fire Dispatch"
+54702 = "ECDC Fire Main"
+54751 = "Kirkwood Fire Dispatch"
+54749 = "Kirkwood Fire Main"
+54759 = "University City Fire"
 
 # Alert rules. A call alerts if ANY pattern in a rule matches. Optionally
 # limit a rule to certain talkgroups with `talkgroups = [1234, 1235]`.
